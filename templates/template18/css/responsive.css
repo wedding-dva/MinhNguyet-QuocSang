@@ -1164,9 +1164,11 @@
 }
 
 @media(max-width:639px) {
-	#clock {
-		flex-wrap: wrap;
-	}
+	#clock .box {
+        margin-left: 2px !important;
+        margin-right: 2px !important;
+    }
+
   .important-people ul.nav.nav-tabs {
     width: 100%;
     text-align: center

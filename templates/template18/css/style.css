@@ -5897,6 +5897,18 @@ transform: translate(-50%, -50%);
     animation: heartPulse 2.2s infinite ease-in-out;
 }
 
+.event-naptai {
+    color: rgb(247, 169, 182);
+}
+
+.event-wedding {
+    color: #f37d7d;
+}
+
+.today {
+    color: #ffcc00;
+}
+
 /* NẠP TÀI – TIM HỒNG */
 .calendar-day.event-naptai::before {
     background-image: url("data:image/svg+xml;utf8,\
