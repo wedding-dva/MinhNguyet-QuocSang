@@ -5899,14 +5899,17 @@ transform: translate(-50%, -50%);
 
 .event-naptai {
     color: rgb(247, 169, 182);
+    font-weight: bolder;
 }
 
 .event-wedding {
     color: #f37d7d;
+    font-weight: bolder;
 }
 
 .today {
     color: #ffcc00;
+    font-weight: bolder;
 }
 
 /* NẠP TÀI – TIM HỒNG */
@@ -5914,7 +5917,7 @@ transform: translate(-50%, -50%);
     background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
 <path d='M50 88 L12 52 C-5 32 10 5 35 18 C45 24 50 34 50 34 C50 34 55 24 65 18 C90 5 105 32 88 52 Z' \
-fill='none' stroke='%23e84393' stroke-width='4' stroke-linecap='round'/>\
+fill='none' stroke='%23e84393' stroke-width='6' stroke-linecap='round'/>\
 </svg>");
 }
 
@@ -5924,7 +5927,7 @@ fill='none' stroke='%23e84393' stroke-width='4' stroke-linecap='round'/>\
     background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
 <path d='M50 88 L12 52 C-5 32 10 5 35 18 C45 24 50 34 50 34 C50 34 55 24 65 18 C90 5 105 32 88 52 Z' \
-fill='none' stroke='%23e74c3c' stroke-width='4' stroke-linecap='round'/>\
+fill='none' stroke='%23e74c3c' stroke-width='6' stroke-linecap='round'/>\
 </svg>");
 }
 
