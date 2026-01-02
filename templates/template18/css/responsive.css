@@ -1166,6 +1166,8 @@
 @media(max-width:639px) {
 	#clock .box {
         margin: 2px !important;
+        width: 80px !important;
+        height: 80px !important;
     }
 
   .important-people ul.nav.nav-tabs {
