@@ -245,6 +245,9 @@
                     <div class="count-titles wow fadeInDown">
                         <h2>The big day</h2>
                         <div id="clock" data-date="2026-01-24" data-text-day="Ngày" data-text-hour="Giờ" data-text-minute="Phút" data-text-second="Giây"></div>
+                        <div class="calendar-wrapper">
+    <div id="mini-calendar" class="mini-calendar"></div>
+</div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -896,5 +899,61 @@
             toastMessageWishes(dataWishes,'rsvp');
         }
     </script>
+    <script>
+(function () {
+    const calendar = document.getElementById("mini-calendar");
+    const today = new Date();      // 02/01/2026
+    const targetDate = new Date(2026, 0, 24); // Cưới
+    const napTaiDate = new Date(2026, 0, 21); // Nạp tài
+
+    const daysVN = ["CN","T2","T3","T4","T5","T6","T7"];
+
+    // Header thứ
+    daysVN.forEach(d => {
+        const h = document.createElement("div");
+        h.className = "calendar-header";
+        h.innerText = d;
+        calendar.appendChild(h);
+    });
+
+    // Căn đúng thứ của ngày bắt đầu
+    const startDayIndex = today.getDay();
+    for (let i = 0; i < startDayIndex; i++) {
+        calendar.appendChild(document.createElement("div"));
+    }
+
+    // Render 30 ngày
+    for (let i = 0; i < 30; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+
+        const div = document.createElement("div");
+        div.className = "calendar-day";
+
+        // Hôm nay
+        if (d.toDateString() === today.toDateString()) {
+            div.classList.add("today");
+        }
+
+        // Nạp tài
+        if (d.toDateString() === napTaiDate.toDateString()) {
+            div.classList.add("event-naptai");
+        }
+
+        // Cưới
+        if (d.toDateString() === targetDate.toDateString()) {
+            div.classList.add("event-wedding");
+        }
+
+        div.innerHTML = `
+            <div class="date">${d.getDate()}</div>
+        `;
+
+        calendar.appendChild(div);
+    }
+})();
+</script>
+
+
 </body>
 </html>

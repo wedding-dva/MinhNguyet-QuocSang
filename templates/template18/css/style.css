@@ -5864,6 +5864,85 @@ transform: translate(-50%, -50%);
 .menu-icon{
 	font-size: 25px;
 }
+
+.calendar-wrapper {
+    margin-top: 30px;
+}
+
+.mini-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.calendar-day {
+    position: relative;
+}
+
+/* KHUNG TIM SVG CHUẨN */
+.calendar-day.event-naptai::before,
+.calendar-day.event-wedding::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    animation: heartPulse 2.2s infinite ease-in-out;
+}
+
+/* NẠP TÀI – TIM HỒNG */
+.calendar-day.event-naptai::before {
+    background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+<path d='M50 88 L12 52 C-5 32 10 5 35 18 C45 24 50 34 50 34 C50 34 55 24 65 18 C90 5 105 32 88 52 Z' \
+fill='none' stroke='%23e84393' stroke-width='4' stroke-linecap='round'/>\
+</svg>");
+}
+
+
+/* CƯỚI – TIM ĐỎ */
+.calendar-day.event-wedding::before {
+    background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+<path d='M50 88 L12 52 C-5 32 10 5 35 18 C45 24 50 34 50 34 C50 34 55 24 65 18 C90 5 105 32 88 52 Z' \
+fill='none' stroke='%23e74c3c' stroke-width='4' stroke-linecap='round'/>\
+</svg>");
+}
+
+/* ANIMATION TIM ĐẬP */
+@keyframes heartPulse {
+    0%   { transform: scale(1); opacity: .85; }
+    30%  { transform: scale(1.36); opacity: 1; }
+    60%  { transform: scale(1); }
+    100% { transform: scale(1); opacity: .85; }
+}
+
+.calendar-day.today::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 2px solid #ffcc00;
+    border-radius: 6px;   /* bo góc OK */
+    pointer-events: none;
+    animation: todayGlow 2.2s infinite ease-in-out;
+}
+
+/* Khi TODAY trùng NẠP TÀI hoặc CƯỚI */
+.calendar-day.today.event-naptai::after,
+.calendar-day.today.event-wedding::after {
+    inset: -8px;              /* today nằm NGOÀI tim */
+    border-color: #ffcc00;    /* vẫn giữ màu today */
+    opacity: 0.9;
+}
+
+
 .btn-menu-open,.btn-menu-close{
 	cursor: pointer;
 	width: 40px;
