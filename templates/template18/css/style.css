@@ -19,6 +19,34 @@ body {
     font-family: Comfortaa, sans-serif !important;
 }
 
+.toast-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    background: #2ecc71;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-success.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 html,
 body {
     overflow-x: hidden
@@ -3316,6 +3344,33 @@ ul.gallery li.active {
     position: relative
 }
 
+.reply-btn {
+      background: #b6ffe1;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+}
+
+.reply-btn {
+      background: rgb(76, 104, 65);
+      ;
+      color: white;
+      border: none;
+      padding: 6px 10px 2px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 6px;
+      margin-left: 230px !important;
+    }
+
+    .reply-btn:hover {
+      background: #48865b;
+    }
+
+
 .gallery-quote h2 {
     position: absolute;
     left: 0;
@@ -6256,7 +6311,7 @@ textarea#content{border: none;}
 
 .contact-validation-active .error-handling-messages {
     width: 100% !important;
-    margin-top: 15px !important;
+    margin-top: 55px !important;
 }
 
 .contact-validation-active #success,

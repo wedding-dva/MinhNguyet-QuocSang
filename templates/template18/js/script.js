@@ -9,63 +9,63 @@
         $(".video-play-btn").magnificPopup({ type: 'iframe', }); $('.project-hover').magnificPopup({ delegate: 'a', type: 'image' }); var magnifPopup = function () { $('.port-popup').magnificPopup({ delegate: 'a', type: 'image', removalDelay: 300, mainClass: 'mfp-with-zoom', gallery: { enabled: true }, zoom: { enabled: true, duration: 300, easing: 'ease-in-out', opener: function (openerElement) { return openerElement.is('img') ? openerElement : openerElement.find('img'); } } }); }; magnifPopup();
         function masonryGridSetting() {
             if ($('.masonry-gallery').length) {
-                var $grid =  $('.masonry-gallery').masonry({
+                var $grid = $('.masonry-gallery').masonry({
                     itemSelector: '.grid-item',
                     columnWidth: '.grid-item',
                     percentPosition: true
                 });
-    
-                $grid.imagesLoaded().progress( function() {
+
+                $grid.imagesLoaded().progress(function () {
                     $grid.masonry('layout');
                 });
             }
         }
-    
+
         masonryGridSetting();
-        
+
         // SLIDER
-    var menu = [];
-    jQuery('.swiper-slide').each( function(index){
-        menu.push( jQuery(this).find('.slide-inner').attr("data-text") );
-    });
-    var interleaveOffset = 0.5;
-    var swiperOptions = {
-        loop: true,
-        speed: 1500,
-        autoplay: {
-            delay: 6500,
-            disableOnInteraction: true,
-        },
+        var menu = [];
+        jQuery('.swiper-slide').each(function (index) {
+            menu.push(jQuery(this).find('.slide-inner').attr("data-text"));
+        });
+        var interleaveOffset = 0.5;
+        var swiperOptions = {
+            loop: true,
+            speed: 1500,
+            autoplay: {
+                delay: 6500,
+                disableOnInteraction: true,
+            },
 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
 
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }
-    };
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        };
 
-    var swiper = new Swiper(".swiper-container", swiperOptions);
+        var swiper = new Swiper(".swiper-container", swiperOptions);
 
-    // DATA BACKGROUND IMAGE
-    var sliderBgSetting = $(".slide-bg-image");
-    sliderBgSetting.each(function(indx){
-        if ($(this).attr("data-background")){
-            $(this).css("background-image", "url(" + $(this).data("background") + ")");
-        }
-    });
+        // DATA BACKGROUND IMAGE
+        var sliderBgSetting = $(".slide-bg-image");
+        sliderBgSetting.each(function (indx) {
+            if ($(this).attr("data-background")) {
+                $(this).css("background-image", "url(" + $(this).data("background") + ")");
+            }
+        });
 
 
-        
-        $(document).ready(function(){
-        	setAutoHeightEventImage();
-		    $('[data-toggle="popover"]').popover();   
-		   
-		});
-        
+
+        $(document).ready(function () {
+            setAutoHeightEventImage();
+            $('[data-toggle="popover"]').popover();
+
+        });
+
 
         if ($("#wish-form").length) {
             $("#wish-form").validate({
@@ -83,7 +83,7 @@
                         email: true
                     },
                 },
-    
+
                 messages: {
                     // name: {
                     //     required: 'Vui lòng nhập tên của bạn.',
@@ -97,305 +97,307 @@
                         email: 'Địa chỉ email không hợp lệ.'
                     }
                 },
-                
-                errorPlacement: function(error, element) {
-                    if (element.attr("name") == "content" ) {
-                      error.insertAfter("#wish-form .vitualTextarea");
+
+                errorPlacement: function (error, element) {
+                    if (element.attr("name") == "content") {
+                        error.insertAfter("#wish-form .vitualTextarea");
                     } else {
-                      error.insertAfter(element);
+                        error.insertAfter(element);
                     }
-                },
-                submitHandler: function (form) {
-                    $("#loader").css("display", "inline-block");
-                    $.ajax({
-                        type: "POST",
-                        url: "/wish",
-                        data: $(form).serialize(),
-                        success: function (res) {
-                            $( "#loader").hide();
-                            if(!res.error){
-                                $('.wish-box').scrollTop(0);
-                                $('.wish-box').prepend('<div class="wish-box-item bg"><strong>'+$(form).find("input[name='name']").val().replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;")+'</strong><p>'+$(form).find("textarea[name='content']").val().replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;")+'</p></div>');
-                                $( "#success").html(res.message).slideDown( "slow" );
-                                setTimeout(function() {
-                                $( "#success").slideUp( "slow" );
-                                }, 5000);
-                            }else{
-                                $( "#error").html(res.message).slideDown( "slow" );
-                                setTimeout(function() {
-                                $( "#error").slideUp( "slow" );
-                                }, 5000);
-                            }
-    
-                            form.reset();
-                        },
-                        error: function() {
-                            $( "#loader").hide();
-                            $( "#error").slideDown( "slow" );
-                            setTimeout(function() {
-                            $( "#error").slideUp( "slow" );
-                            }, 5000);
-                        }
-                    });
-                    return false;
                 }
-    
+                // ,
+                // submitHandler: async function (form) {
+
+                //     debugger;
+
+                //     const name = form.querySelector("#name").value.trim();
+                //     const content = form.querySelector("#content").value.trim();
+
+                //     if (!name || !content) {
+                //         alert("Vui lòng nhập đầy đủ!");
+                //         return false;
+                //     }
+
+                //     try {
+                //         const msgRes = await fetch(`${API_BASE}/api/cards/${cardId}/messages`, {
+                //             method: "POST",
+                //             headers: { "Content-Type": "application/json" },
+                //             body: JSON.stringify({ name, message: content }),
+                //         });
+
+                //         const msgData = await msgRes.json();
+                //         debugger;
+                //         if (!msgData.success) {
+                //             alert("Gửi lời chúc thất bại!");
+                //             return false;
+                //         }
+
+                //         form.reset();
+                //         await loadMessages();
+
+                //     } catch (err) {
+                //         alert("Không gửi được dữ liệu!");
+                //     }
+
+                //     return false; // ⛔ NGĂN submit mặc định
+                // }
+
             });
         }
 
-        if ($("#donate-modal").length && $(".buttonDonate").length  && $(".donate-modal-close").length) {
-            $(document).on('click','.buttonDonate',function(){
+        if ($("#donate-modal").length && $(".buttonDonate").length && $(".donate-modal-close").length) {
+            $(document).on('click', '.buttonDonate', function () {
                 $("#donate-modal").show();
             });
-            $(document).on('click','.donate-modal-close',function(){
+            $(document).on('click', '.donate-modal-close', function () {
                 $("#donate-modal").hide();
             });
-            $(document).on('click','body',function(e){
-                if(e.target.id == $("#donate-modal").attr('id')) { $("#donate-modal").hide(); }
+            $(document).on('click', 'body', function (e) {
+                if (e.target.id == $("#donate-modal").attr('id')) { $("#donate-modal").hide(); }
             });
         }
 
         if ($("#clock").length) {
 
-            function timeElapse(date){
-        
+            function timeElapse(date) {
+
                 var current = Date();
-        
+
                 var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
-        
+
                 var days = Math.floor(seconds / (3600 * 24));
-        
+
                 if (days < 10) {
-        
+
                     days = "0" + days;
-        
+
                 }
-        
+
                 seconds = seconds % (3600 * 24);
-        
+
                 var hours = Math.floor(seconds / 3600);
-        
+
                 if (hours < 10) {
-        
+
                     hours = "0" + hours;
-        
+
                 }
-        
+
                 seconds = seconds % 3600;
-        
+
                 var minutes = Math.floor(seconds / 60);
-        
+
                 if (minutes < 10) {
-        
+
                     minutes = "0" + minutes;
-        
+
                 }
-        
+
                 seconds = seconds % 60;
-        
+
                 if (seconds < 10) {
-        
+
                     seconds = "0" + seconds;
-        
+
                 }
-        
-                var html = '<div class="box"><div><div class="time">' + days + '</div> <span>'+ $('#clock').data('text-day') +'</span> </div></div><div class="box"><div><div class="time">' + hours + '</div> <span>'+ $('#clock').data('text-hour') +'</span> </div></div><div class="box"><div><div class="time">' + minutes + '</div> <span>'+ $('#clock').data('text-minute') +'</span> </div></div><div class="box"><div><div class="time">' + seconds + '</div> <span>'+ $('#clock').data('text-second') +'</span> </div></div>';
-        
+
+                var html = '<div class="box"><div><div class="time">' + days + '</div> <span>' + $('#clock').data('text-day') + '</span> </div></div><div class="box"><div><div class="time">' + hours + '</div> <span>' + $('#clock').data('text-hour') + '</span> </div></div><div class="box"><div><div class="time">' + minutes + '</div> <span>' + $('#clock').data('text-minute') + '</span> </div></div><div class="box"><div><div class="time">' + seconds + '</div> <span>' + $('#clock').data('text-second') + '</span> </div></div>';
+
                 $('#clock').html(html);
-        
+
             }
-        
+
             var time = $('#clock').data('date');
-        
-            $('#clock').countdown(time.replace(/-/g,'/'), function(event) {
-        
-                if(event.type == 'stoped'){
-        
-                    var together = new Date($('#clock').data('date'));           
-        
-                    together.setHours(0);                           
-        
-                    together.setMinutes(0);             
-        
-                    together.setSeconds(0);                 
-        
+
+            $('#clock').countdown(time.replace(/-/g, '/'), function (event) {
+
+                if (event.type == 'stoped') {
+
+                    var together = new Date($('#clock').data('date'));
+
+                    together.setHours(0);
+
+                    together.setMinutes(0);
+
+                    together.setSeconds(0);
+
                     together.setMilliseconds(0);
-        
-                    setInterval(function() {
-        
+
+                    setInterval(function () {
+
                         timeElapse(together);
-        
+
                     }, 1000);
-        
-                }else{
-        
+
+                } else {
+
                     var $this = $(this).html(event.strftime(''
-        
-                    + '<div class="box"><div><div class="time">%D</div> <span>'+ $('#clock').data('text-day') +'</span> </div></div>'
-        
-                    + '<div class="box"><div><div class="time">%H</div> <span>'+ $('#clock').data('text-hour') +'</span> </div></div>'
-        
-                    + '<div class="box"><div><div class="time">%M</div> <span>'+ $('#clock').data('text-minute') +'</span> </div></div>'
-        
-                    + '<div class="box"><div><div class="time">%S</div> <span>'+ $('#clock').data('text-second') +'</span> </div></div>'));
-        
+
+                        + '<div class="box"><div><div class="time">%D</div> <span>' + $('#clock').data('text-day') + '</span> </div></div>'
+
+                        + '<div class="box"><div><div class="time">%H</div> <span>' + $('#clock').data('text-hour') + '</span> </div></div>'
+
+                        + '<div class="box"><div><div class="time">%M</div> <span>' + $('#clock').data('text-minute') + '</span> </div></div>'
+
+                        + '<div class="box"><div><div class="time">%S</div> <span>' + $('#clock').data('text-second') + '</span> </div></div>'));
+
                 }
-        
+
             });
-        
+
         }
-        
+
         function sticky() {
-        var sticky = document.querySelectorAll('.sticky');
-        var offsetTop = 150;
+            var sticky = document.querySelectorAll('.sticky');
+            var offsetTop = 150;
 
-        if (sticky) {
-            var tickerScroll = false;
-            window.addEventListener('scroll', function () {
-                if (!tickerScroll) {
-                    tickerScroll = true;
-                    requestAnimationFrame(function () {
-                        for (var _i11 = 0; _i11 < sticky.length; _i11++) {
-                            var stickyRect = sticky[_i11].getBoundingClientRect();
+            if (sticky) {
+                var tickerScroll = false;
+                window.addEventListener('scroll', function () {
+                    if (!tickerScroll) {
+                        tickerScroll = true;
+                        requestAnimationFrame(function () {
+                            for (var _i11 = 0; _i11 < sticky.length; _i11++) {
+                                var stickyRect = sticky[_i11].getBoundingClientRect();
 
-                            var parentRect = sticky[_i11].parentNode.getBoundingClientRect();
+                                var parentRect = sticky[_i11].parentNode.getBoundingClientRect();
 
-                            if (parentRect.height > stickyRect.height + offsetTop) {
-                                if (parentRect.top > offsetTop) {
-                                    sticky[_i11].style.position = 'absolute';
-                                    sticky[_i11].style.top = '0px';
-                                    sticky[_i11].style.bottom = 'auto';
-                                    // sticky[_i11].style.width = '100%';
-                                } else if (parentRect.bottom < stickyRect.height + offsetTop) {
-                                    sticky[_i11].style.position = 'absolute';
-                                    sticky[_i11].style.top = 'auto';
-                                    sticky[_i11].style.bottom = '0px';
-                                    // sticky[_i11].style.width = '100%';
+                                if (parentRect.height > stickyRect.height + offsetTop) {
+                                    if (parentRect.top > offsetTop) {
+                                        sticky[_i11].style.position = 'absolute';
+                                        sticky[_i11].style.top = '0px';
+                                        sticky[_i11].style.bottom = 'auto';
+                                        // sticky[_i11].style.width = '100%';
+                                    } else if (parentRect.bottom < stickyRect.height + offsetTop) {
+                                        sticky[_i11].style.position = 'absolute';
+                                        sticky[_i11].style.top = 'auto';
+                                        sticky[_i11].style.bottom = '0px';
+                                        // sticky[_i11].style.width = '100%';
+                                    } else {
+                                        sticky[_i11].style.position = 'fixed';
+                                        sticky[_i11].style.top = offsetTop + 'px';
+                                        sticky[_i11].style.bottom = 'auto';
+                                        // sticky[_i11].style.width = parentRect.width + 'px';
+                                    }
                                 } else {
-                                    sticky[_i11].style.position = 'fixed';
-                                    sticky[_i11].style.top = offsetTop + 'px';
-                                    sticky[_i11].style.bottom = 'auto';
-                                    // sticky[_i11].style.width = parentRect.width + 'px';
+                                    sticky[_i11].style.width = '';
+                                    sticky[_i11].style.position = '';
+                                    sticky[_i11].style.top = '';
+                                    sticky[_i11].style.bottom = '';
                                 }
-                            } else {
-                                sticky[_i11].style.width = '';
-                                sticky[_i11].style.position = '';
-                                sticky[_i11].style.top = '';
-                                sticky[_i11].style.bottom = '';
                             }
-                        }
 
-                        tickerScroll = false;
-                    });
-                }
-            })
+                            tickerScroll = false;
+                        });
+                    }
+                })
+            }
         }
-    }
-    
-    sticky()
-    
+
+        sticky()
+
     });
     function setAutoHeightEventImage() {
-    	if ($(".wedding-event").length) {
-    		if($(window).width() >= 992) {
-    			const imageHeight = $('.wedding-event .banner-event .event-img').outerHeight();
-    			$('.wedding-event .banner-event').parent().css('min-height', (imageHeight+70) + 'px');	
-    		}else{
-    			$('.wedding-event .banner-event').parent().css('min-height', 'inherit');	
-    		}
-    	}
+        if ($(".wedding-event").length) {
+            if ($(window).width() >= 992) {
+                const imageHeight = $('.wedding-event .banner-event .event-img').outerHeight();
+                $('.wedding-event .banner-event').parent().css('min-height', (imageHeight + 70) + 'px');
+            } else {
+                $('.wedding-event .banner-event').parent().css('min-height', 'inherit');
+            }
+        }
     }
 
-            /*------------------------------------------
-    = MENU ACCESSBILITY
-    -------------------------------------------*/
-    $('.btn-menu-open').click(function() {
-        $('ul.list-menu-icon').css('opacity','1');
-        $('ul.list-menu-icon').css('pointer-events','');
+    /*------------------------------------------
+= MENU ACCESSBILITY
+-------------------------------------------*/
+    $('.btn-menu-open').click(function () {
+        $('ul.list-menu-icon').css('opacity', '1');
+        $('ul.list-menu-icon').css('pointer-events', '');
         $('.btn-menu-close').show();
         $('.btn-menu-open').hide();
     })
-    $('.btn-menu-close').click(function() {
-        $('ul.list-menu-icon').css('opacity','0');
-        $('ul.list-menu-icon').css('pointer-events','none');
+    $('.btn-menu-close').click(function () {
+        $('ul.list-menu-icon').css('opacity', '0');
+        $('ul.list-menu-icon').css('pointer-events', 'none');
         $('.btn-menu-open').show();
         $('.btn-menu-close').hide();
     })
     setTimeout(() => {
         $('.btn-menu-open').hide();
         $('.btn-menu-close').show();
-        $('ul.list-menu-icon').css('opacity','1');
-    }, 3000); 
-    $( window ).on("load", function(){
-		if($('.bii-logo').length > 0){
-			$('#menu-access').css('bottom','278px');
-			document.querySelector('style').textContent += "@media (max-width: 799px){#menu-access{bottom: 238px!important;}}"
-		} 
-	})
-    function shakeTooltip(){
+        $('ul.list-menu-icon').css('opacity', '1');
+    }, 3000);
+    $(window).on("load", function () {
+        if ($('.bii-logo').length > 0) {
+            $('#menu-access').css('bottom', '278px');
+            document.querySelector('style').textContent += "@media (max-width: 799px){#menu-access{bottom: 238px!important;}}"
+        }
+    })
+    function shakeTooltip() {
         var arrTooltip = $('ul.list-menu-icon').children();
-        arrTooltip.each(function(index) {
+        arrTooltip.each(function (index) {
             setTimeout(() => {
-                if(document.querySelector('.btn-menu-close').style.display !== "none"){  
+                if (document.querySelector('.btn-menu-close').style.display !== "none") {
                     $(this).addClass('shake');
-                    $(this).children().children().children('.tooltiptext').css('visibility','visible');
+                    $(this).children().children().children('.tooltiptext').css('visibility', 'visible');
                     setTimeout(() => {
-                        $(this).children().children().children('.tooltiptext').css('visibility','');
+                        $(this).children().children().children('.tooltiptext').css('visibility', '');
                         $(this).removeClass('shake');
                     }, 3000);
-                } else{
+                } else {
                     return false;
                 }
-            }, index*5000); 
-        });   
+            }, index * 5000);
+        });
     }
-    if($('#menu-access').length >0){
+    if ($('#menu-access').length > 0) {
         setTimeout(() => {
             shakeTooltip();
             myInterval = setInterval(shakeTooltip, 20000);
         }, 3000);
     }
-    $('.btn-menu-close').click(function(){
-        $('tooltiptext').css('visibility','');
+    $('.btn-menu-close').click(function () {
+        $('tooltiptext').css('visibility', '');
         clearInterval(myInterval);
     });
 
-    $(document).on('click', '#donate-modal .crypto-item', function(){
+    $(document).on('click', '#donate-modal .crypto-item', function () {
         let parent = $(this).parents('.donate-card');
         parent.find('.cryptos-box-view').show();
-        parent.find('.cryptos-box-view .coin-img').html('<img src="'+$(this).data('img')+'" />');
+        parent.find('.cryptos-box-view .coin-img').html('<img src="' + $(this).data('img') + '" />');
         parent.find('.cryptos-box-view .coin-id').html($(this).data('id'));
         parent.find('.cryptos-box-view .coin-address').html($(this).data('address'));
-        parent.find('.cryptos-box-view .coin-qr-code').html('').qrcode({width: 160,height: 160,text: $(this).data('address')});
+        parent.find('.cryptos-box-view .coin-qr-code').html('').qrcode({ width: 160, height: 160, text: $(this).data('address') });
     });
 
-    $(document).on('click', '#donate-modal .cryptos-box-view-close', function(){
-		let parent = $(this).parents('.donate-card');
-		parent.find('.cryptos-box-view').hide();
-	});
+    $(document).on('click', '#donate-modal .cryptos-box-view-close', function () {
+        let parent = $(this).parents('.donate-card');
+        parent.find('.cryptos-box-view').hide();
+    });
 
     // ALBUM GALLERIES
-	$(document).on('click', '.btn-see-more-gallery', function(e){
-		e.preventDefault();
-		let indexNumber = $(this).data('index') || 0;
-		$(this).lightGallery({
-		thumbnail: true,
-		dynamic: true,
-		dynamicEl: photoGalleries,
-		download: false,
-		autoplay: true,
-		preload: 2,
-		appendSubHtmlTo: '.lg-item',
-		index: parseInt(indexNumber)
-		});
-	});
+    $(document).on('click', '.btn-see-more-gallery', function (e) {
+        e.preventDefault();
+        let indexNumber = $(this).data('index') || 0;
+        $(this).lightGallery({
+            thumbnail: true,
+            dynamic: true,
+            dynamicEl: photoGalleries,
+            download: false,
+            autoplay: true,
+            preload: 2,
+            appendSubHtmlTo: '.lg-item',
+            index: parseInt(indexNumber)
+        });
+    });
 
-    $(document).on('click', '.qr-code-image', function(){
+    $(document).on('click', '.qr-code-image', function () {
         let srcImage = $(this).attr('src');
         $(this).lightGallery({
             thumbnail: true,
             dynamic: true,
-            dynamicEl:  [{
+            dynamicEl: [{
                 src: srcImage,
             }],
             download: false,
@@ -409,11 +411,13 @@
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    
-    
 
-    
 
-    $(window).on('resize', function () { var bodyheight = $(this).height(); 
-    $("#mt_banner").height(bodyheight); setAutoHeightEventImage();}).resize();
+
+
+
+    $(window).on('resize', function () {
+        var bodyheight = $(this).height();
+        $("#mt_banner").height(bodyheight); setAutoHeightEventImage();
+    }).resize();
 })(jQuery);
