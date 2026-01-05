@@ -1005,24 +1005,92 @@
                     const wishDiv = document.createElement("div");
 
                     wishDiv.innerHTML = `
-                                                        <div class="wish-box-item">
-                                                            <p><strong>${msg.name}</strong> <img class="heart-icon" src="./common/imgs/event/heart.png"></p>
-                                                            <p>${msg.message}</p>
-                                                        </div>
+                    <div class="wish-box-item" data-id="${msg.id}">
+                        <p>
+                            <strong>${msg.name}</strong>
+                            <img class="heart-icon" src="./common/imgs/event/heart.png">
+                        </p>
 
-                                                        ${msg.reply
+                        <p>${msg.message}</p>
+
+                        <div class="wish-actions">
+                            ${
+                                isAdmin
+                                    ? `
+                                        <!-- ❤️ TIM: ADMIN LUÔN THẤY & BẤM -->
+                                        <button
+                                            class="heart-btn ${Number(msg.isLike) === 1 ? "liked" : ""}"
+                                            onclick="toggleHeart(${msg.id})"
+                                        >
+                                        <span class="icon-wrap">
+                                            <span class="icon-bride">🤵👰</span>
+                                            <img
+                                                src="./common/imgs/heart.png"
+                                                class="heart-img"
+                                                alt="heart"
+                                            />
+                                        </span>
+                                            
+                                        </button>
+                                    `
+                                    : Number(msg.isLike) === 1
+                                        ? `
+                                            <!-- ❤️ TIM: USER CHỈ THẤY KHI ĐÃ LIKE -->
+                                            <div class="heart-liked">
+                                                🤵👰 <img
+                                                    src="./common/imgs/heart.png"
+                                                    class="heart-img"
+                                                    alt="heart"
+                                                />
+                                            </div>
+                                        `
+                                        : ""
+                            }
+
+                            <!-- ✏️ TRẢ LỜI: CHỈ ADMIN -->
+                            ${
+                                isAdmin && !msg.reply
+                                    ? `
+                                        <button
+                                            class="reply-btn"
+                                            data-id="${msg.id}"
+                                            onclick="showReplyForm(${msg.id})"
+                                        >
+                                            ✏️ Trả lời
+                                        </button>
+                                    `
+                                    : ""
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 💬 REPLY: NGOÀI BOX -->
+                    ${
+                        msg.reply
                             ? `<p class="reply">🤵👰 &nbsp;${msg.reply}</p>`
-                            : isAdmin
+                            : isAdmin && !msg.reply
                                 ? `
-                                                                <button class="reply-btn" onclick="showReplyForm(${msg.id})">✏️ Trả lời</button>
-                                                                <div id="reply-form-${msg.id}" class="reply-form" style="display:none;">
-                                                                <input id="reply-input-${msg.id}" type="text" placeholder="Nhập câu trả lời..." />
-                                                                <button onclick="submitReply(${msg.id})">Gửi</button>
-                                                                </div>
-                                                            `
+                                    <div
+                                        id="reply-form-${msg.id}"
+                                        class="reply-form"
+                                        style="display:none;"
+                                    >
+                                        <input
+                                            id="reply-input-${msg.id}"
+                                            type="text"
+                                            placeholder="Nhập câu trả lời..."
+                                        />
+                                        <button onclick="submitReply(${msg.id})">
+                                            Gửi
+                                        </button>
+                                    </div>
+                                `
                                 : ""
-                        }
-                                                `;
+                    }
+                `;
+
+
+
                     wishesList.appendChild(wishDiv);
 
                     dataWishes.push({
@@ -1095,13 +1163,14 @@
 
         // ========================= HIỆN Ô TRẢ LỜI =========================
         window.showReplyForm = function (messageId) {
-            // Hiện form trả lời
             const form = document.getElementById(`reply-form-${messageId}`);
             form.style.display = "flex";
 
-            // Ẩn nút "Trả lời"
-            const replyBtn = form.previousElementSibling;
-            if (replyBtn && replyBtn.classList.contains("reply-btn")) {
+            const replyBtn = document.querySelector(
+                `.reply-btn[data-id="${messageId}"]`
+            );
+
+            if (replyBtn) {
                 replyBtn.style.display = "none";
             }
         };
@@ -1138,6 +1207,42 @@
                 alert("Không gửi được!");
             }
         };
+
+        async function toggleHeart(id) {
+
+            if (!isAdmin) {
+                console.warn("Non-admin cannot toggle heart");
+                return;
+            }
+
+            try {
+                const res = await fetch(
+                    `${API_BASE}/api/cards/${cardId}/messages/${id}/like`,
+                    { method: "PATCH" }
+                );
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    console.error(data);
+                    return;
+                }
+
+                const box = document.querySelector(
+                    `.wish-box-item[data-id="${id}"]`
+                );
+                if (!box) return;
+
+                const heartBtn = box.querySelector(".heart-btn");
+                if (!heartBtn) return;
+
+                heartBtn.classList.toggle("liked", data.isLike === 1);
+
+            } catch (err) {
+                console.error("Like error:", err);
+            }
+        }
+
     </script>
 
     <!-- <script>
