@@ -349,7 +349,7 @@ label {
 
 .section-title h2 {
     line-height: 36px;
-    color: #333;
+    color: rgb(131, 4, 13);
     font-weight: 700;
     position: relative;
     margin-bottom: 60px;
@@ -1415,7 +1415,7 @@ header#inner-navigation {
 }
 
 #wd-banner .swiper-pagination-bullet-active {
-    background: #ec2328
+    background: rgb(131, 4, 13)
 }
 
 .home-1 #wd-banner .swiper-container-horizontal>.swiper-pagination-bullets,
@@ -1619,7 +1619,7 @@ header#inner-navigation {
 #wd-banner .banner_caption_text p {
     display: inline-block;
     font-size: 16px;
-    background: #ec2328;
+    background: rgb(131, 4, 13);
     color: #fff;
     font-weight: 600;
     padding: 12px 35px;
@@ -2204,6 +2204,7 @@ header#inner-navigation {
 .about-couple-1 .about-top h3 {
     margin-left: 0;
     margin-right: 20px;
+    color: rgb(131, 4, 13);
 }
 
 .couple-img {
@@ -2281,7 +2282,8 @@ header#inner-navigation {
 .about-couple h3 {
     display: inline-block;
     float: left;
-    margin-left: 20px
+    margin-left: 20px;
+    color: rgb(131, 4, 13);
 }
 
 .home-4 .about-couple h3 {
@@ -2300,7 +2302,8 @@ header#inner-navigation {
 .cp-detail p {
     line-height: 2;
     font-size: 16px;
-    margin-bottom: 0
+    margin-bottom: 0;
+    color: rgb(131, 4, 13);
 }
 
 .cp-social ul {
@@ -2808,7 +2811,7 @@ section.section-padding.our-story {
 }
 
 .wedding-event .section-title h2 {
-    color: #333
+    color: rgb(131, 4, 13);
 }
 
 .event-dates {
@@ -2886,12 +2889,14 @@ section.section-padding.our-story {
     /*border: 5px solid #fff;*/
     box-shadow: 0 0 32px #cdcdcd;
     margin-bottom: 40px;
-    border-radius: 10px
+    border-radius: 10px;
+    background-color: rgb(131, 4, 13);
 }
 
 .event-stack h3 {
     padding-bottom: 10px;
     text-align: center;
+    color: #fff;
 }
 
 .home-4 .event-stack h3 {
@@ -2906,7 +2911,7 @@ section.section-padding.our-story {
 }
 
 .event-stack ul li {
-    color: #333;
+    color: #fff;
     padding: 5px 15px 5px 0;
     font-size: 14px;
     display: inline-block
@@ -2928,7 +2933,8 @@ section.section-padding.our-story {
     /*text-align: center;*/
     width: 100%;
     /*padding: 10px 8px 10px 0;*/
-    margin-bottom: 0
+    margin-bottom: 0;
+    color: #fff;
 }
 
 .event-stack a.read-btn {
@@ -3407,9 +3413,9 @@ ul.gallery li.active {
 
 .heart-liked {
     transform: scale(0.9);
-    background: #ff5555;
+    background: rgb(131, 4, 13);
     border-radius: 20px;
-    width: 77px;
+    width: 80px;
     padding-left: 5px;
 }
 
@@ -5254,7 +5260,7 @@ a.read-btn:hover {
 }
 
 .rsvp .section-title h2 {
-    color: #333
+    color: rgb(131, 4, 13)
 }
 
 .rsvp-widgets {
@@ -5274,7 +5280,7 @@ a.read-btn:hover {
     margin: 0 0 60px;
     text-transform: capitalize;
     text-align: center;
-    color: #333;
+    color: rgb(131, 4, 13);
     font-weight: 400;
     position: relative
 }
@@ -5376,7 +5382,7 @@ textarea.form-control {
     text-transform: uppercase;
     padding: 8px 25px;
     border-color: #ec2328;
-    background-color: #ec2328;
+    background-color: rgb(131, 4, 13);
     color: white;
 }
 
@@ -5560,7 +5566,8 @@ ul.insta-info-list {
 .footer-copyright p.para {
     font-size: 28px;
     font-weight: 500;
-    font-family: Playball, cursive
+    font-family: Playball, cursive;
+    color: rgb(131, 4, 13);
 }
 
 .footer-2 .footer {
@@ -5711,7 +5718,7 @@ ul.insta-info-list {
     overflow-y: auto;
     height: 557px;
     background-color: #fff;
-    border: 5px solid #f23b43;
+    border: 5px solid rgb(131, 4, 13);
     color: #333;
     padding: 0;
 }
@@ -6059,10 +6066,11 @@ ul.insta-info-list {
 
 .event-stack a {
     display: block;
+    color: #ffe4e4;
 }
 
 .section-accessibilities {
-    background: #ffe2e5;
+    background: rgb(131, 4, 13);
     padding: 0;
 }
 
@@ -6078,6 +6086,10 @@ ul.insta-info-list {
     margin: 10px 5px 0 !important;
     font-size: 1.4rem !important;
     text-transform: uppercase;
+}
+
+.bii-player .playerIcon {
+    background-color: rgb(131, 4, 13) !important;
 }
 
 .section-accessibilities .button-accessibilities .accessibility-btn .content-button {
@@ -6134,7 +6146,7 @@ ul.insta-info-list {
     font-family: inherit !important;
     padding: 0px;
     margin: 0;
-    color: #ec2328;
+    color: #ffe4e4;
     background-color: transparent;
     font-weight: 400;
     border: 1px solid #ec2328;
@@ -6251,7 +6263,7 @@ ul.insta-info-list {
 }
 
 #menu-access>ul>li {
-    background-color: #df4758;
+    background-color: rgb(131, 4, 13);
     border-radius: 50%;
     -ms-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -6409,7 +6421,7 @@ fill='none' stroke='%23ff3526' stroke-width='6' stroke-linecap='round'/>\
     -webkit-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-    background-color: #df4758;
+    background-color: rgb(131, 4, 13);
     transition: all 2s ease-in;
     position: relative;
     bottom: -156px;
@@ -6525,7 +6537,7 @@ fill='none' stroke='%23ff3526' stroke-width='6' stroke-linecap='round'/>\
     width: 130px;
     font-family: sans-serif;
     font-size: 14px;
-    background-color: #df4758;
+    background-color: rgb(131, 4, 13);
     color: #fff;
     text-align: center;
     border-radius: 6px;
