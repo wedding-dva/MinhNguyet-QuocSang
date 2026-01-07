@@ -1088,9 +1088,6 @@
         const isAdmin = params.get("admin") === "1";
         const cardId = "vip1";
 
-        console.log("CARD ID:", cardId);
-        console.log("isAdmin =", isAdmin);
-
         const API_BASE = "https://wedding-api.kamezocoa1.workers.dev";
 
         if (isAdmin) {
@@ -1348,6 +1345,38 @@
             }
         }
 
+    </script>
+    <script>
+        let warned = false;
+
+        document.addEventListener('keydown', function (e) {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+                (e.ctrlKey && e.key === 'U')
+            ) {
+                e.preventDefault();
+
+                if (!warned) {
+                    warned = true;
+                    alert("⚠️ Nội dung website này được bảo vệ.\nVui lòng không xem mã nguồn hoặc sao chép nội dung.\nXin cảm ơn!");
+                }
+
+                return false;
+            }
+        });
+        </script>
+
+    <script>
+    setInterval(function () {
+        const threshold = 160;
+        if (
+            window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold
+        ) {
+            document.body.innerHTML = '<h1 style="text-align:center;margin-top:20%">😅 Nội dung đã bị khóa</h1>';
+        }
+    }, 1000);
     </script>
 
     <!-- <script>
