@@ -357,8 +357,8 @@
                                             website:<br>[url]https://nguyet-sang-wedding.pages.dev/[/url]",
                                             "startDate":"2026-01-22",
                                             "endDate":"2026-01-22",
-                                            "startTime":"11:00",
-                                            "endTime":"11:00",
+                                            "startTime":"10:00",
+                                            "endTime":"10:00",
                                             "location":"Số nhà 1128, Lê Thái Tổ, Phường Hải Lĩnh, Tỉnh Thanh Hoá",
                                             "options":["Apple","Google","iCal","Microsoft365","MicrosoftTeams","Outlook.com","Yahoo"],
                                             "timeZone":"Asia/Ho_Chi_Minh",
@@ -481,6 +481,70 @@
                     <div class="item">
                         <a href="javscript:void(0)">
                             <img src="./common/imgs/back/back2.jpg" alt="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    photoGalleries.push({
+                        src: "./common/imgs/album/ab14.jpg",
+                        thumb: "./common/imgs/album/ab14.jpg",
+                        subHtml: `<div class="lg-sub-html"><h4></h4></div>`
+                    });
+                </script>
+
+                <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item btn-see-more-gallery" data-index="1">
+                    <div class="item">
+                        <a href="javscript:void(0)">
+                            <img src="./common/imgs/album/ab14.jpg" alt="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    photoGalleries.push({
+                        src: "./common/imgs/album/ab15.jpg",
+                        thumb: "./common/imgs/album/ab15.jpg",
+                        subHtml: `<div class="lg-sub-html"><h4></h4></div>`
+                    });
+                </script>
+
+                <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item btn-see-more-gallery" data-index="1">
+                    <div class="item">
+                        <a href="javscript:void(0)">
+                            <img src="./common/imgs/album/ab15.jpg" alt="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    photoGalleries.push({
+                        src: "./common/imgs/album/ab16.jpg",
+                        thumb: "./common/imgs/album/ab16.jpg",
+                        subHtml: `<div class="lg-sub-html"><h4></h4></div>`
+                    });
+                </script>
+
+                <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item btn-see-more-gallery" data-index="1">
+                    <div class="item">
+                        <a href="javscript:void(0)">
+                            <img src="./common/imgs/album/ab16.jpg" alt="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    photoGalleries.push({
+                        src: "./common/imgs/album/ab17.jpg",
+                        thumb: "./common/imgs/album/ab17.jpg",
+                        subHtml: `<div class="lg-sub-html"><h4></h4></div>`
+                    });
+                </script>
+
+                <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item btn-see-more-gallery" data-index="1">
+                    <div class="item">
+                        <a href="javscript:void(0)">
+                            <img src="./common/imgs/album/ab17.jpg" alt="">
                             <i class="fa fa-search"></i>
                         </a>
                     </div>
@@ -927,7 +991,7 @@
                         <p>Ngân hàng: <strong>BIDV</strong></p>
                         <p>Tên tài khoản: <strong>TRAN Y QUOC SANG</strong></p>
                         <p>Số tài khoản: <strong>211 088  8850</strong></p>
-                        <p>Chi nhánh: PGD NGHI SON<strong></strong></p>
+                        <p>Chi nhánh: CN Hà Nội<strong></strong></p>
 
                     </div>
                     <div class="donate-card">
@@ -936,7 +1000,7 @@
                         <p>Ngân hàng: <strong>BIDV</strong></p>
                         <p>Tên tài khoản: <strong>NGUYEN MINH NGUYET</strong></p>
                         <p>Số tài khoản: <strong>502 010 0263</strong></p>
-                        <p>Chi nhánh: PGD NGHI SON<strong></strong></p>
+                        <p>Chi nhánh: PGD Nghi Sơn<strong></strong></p>
 
                     </div>
                 </div>
@@ -1027,59 +1091,62 @@
         }
     </script>
     <script>
-        (function () {
-            const calendar = document.getElementById("mini-calendar");
-            const today = new Date();      // 02/01/2026
-            const targetDate = new Date(2026, 0, 24); // Cưới
-            const napTaiDate = new Date(2026, 0, 22); // Nạp tài
+    (function () {
+        const calendar = document.getElementById("mini-calendar");
 
-            const daysVN = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+        const startDate = new Date(2026, 0, 8);   // 🔒 Ngày bắt đầu cố định
+        const today = new Date();                // Chỉ để highlight hôm nay
 
-            // Header thứ
-            daysVN.forEach(d => {
-                const h = document.createElement("div");
-                h.className = "calendar-header";
-                h.innerText = d;
-                calendar.appendChild(h);
-            });
+        const targetDate = new Date(2026, 0, 24); // Cưới
+        const napTaiDate = new Date(2026, 0, 22); // Nạp tài
 
-            // Căn đúng thứ của ngày bắt đầu
-            const startDayIndex = today.getDay();
-            for (let i = 0; i < startDayIndex; i++) {
-                calendar.appendChild(document.createElement("div"));
+        const daysVN = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+
+        calendar.innerHTML = "";
+
+        // Header thứ
+        daysVN.forEach(d => {
+            const h = document.createElement("div");
+            h.className = "calendar-header";
+            h.innerText = d;
+            calendar.appendChild(h);
+        });
+
+        // Căn theo thứ của 08/01/2026
+        const startDayIndex = startDate.getDay();
+        for (let i = 0; i < startDayIndex; i++) {
+            calendar.appendChild(document.createElement("div"));
+        }
+
+        // Render 30 ngày kể từ 08/01/2026
+        for (let i = 0; i < 30; i++) {
+            const d = new Date(startDate);
+            d.setDate(startDate.getDate() + i);
+
+            const div = document.createElement("div");
+            div.className = "calendar-day";
+
+            // Highlight hôm nay
+            if (d.toDateString() === today.toDateString()) {
+                div.classList.add("today");
             }
 
-            // Render 30 ngày
-            for (let i = 0; i < 30; i++) {
-                const d = new Date(today);
-                d.setDate(today.getDate() + i);
-
-                const div = document.createElement("div");
-                div.className = "calendar-day";
-
-                // Hôm nay
-                if (d.toDateString() === today.toDateString()) {
-                    div.classList.add("today");
-                }
-
-                // Nạp tài
-                if (d.toDateString() === napTaiDate.toDateString()) {
-                    div.classList.add("event-naptai");
-                }
-
-                // Cưới
-                if (d.toDateString() === targetDate.toDateString()) {
-                    div.classList.add("event-wedding");
-                }
-
-                div.innerHTML = `
-            <div class="date">${d.getDate()}</div>
-        `;
-
-                calendar.appendChild(div);
+            // Nạp tài
+            if (d.toDateString() === napTaiDate.toDateString()) {
+                div.classList.add("event-naptai");
             }
-        })();
+
+            // Cưới
+            if (d.toDateString() === targetDate.toDateString()) {
+                div.classList.add("event-wedding");
+            }
+
+            div.innerHTML = `<div class="date">${d.getDate()}</div>`;
+            calendar.appendChild(div);
+        }
+    })();
     </script>
+
 
     <script>
         const url = new URL(window.location.href);
@@ -1195,9 +1262,15 @@
 
                     wishesList.appendChild(wishDiv);
 
+                    // dataWishes.push({
+                    //     name: `${msg.name}</strong> <img class="heart-icon" src="./common/imgs/event/heart.png">`,
+                    //     content: `${msg.message}`
+                    // });
+                });
+                messages.reverse().forEach(msg => {
                     dataWishes.push({
                         name: `${msg.name}</strong> <img class="heart-icon" src="./common/imgs/event/heart.png">`,
-                        content: `${msg.message}`
+                        content: msg.message
                     });
                 });
             } catch (error) {
@@ -1365,7 +1438,7 @@
                 return false;
             }
         });
-        </script>
+    </script>
 
     <!-- <script>
     setInterval(function () {
