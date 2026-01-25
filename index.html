@@ -1127,7 +1127,11 @@
             div.className = "calendar-day";
 
             // Highlight hôm nay
-            if (d.toDateString() === today.toDateString()) {
+            // Highlight hôm nay (chỉ khi CHƯA tới ngày cưới)
+            if (
+                d.toDateString() === today.toDateString() &&
+                today < targetDate
+            ) {
                 div.classList.add("today");
             }
 
